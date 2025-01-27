@@ -47,32 +47,26 @@ function App() {
     });
 
 
-    function removeTask(todolistsId:string, id: string) {
+    function removeTask(todolistsId: string, id: string) {
         let filteredTasks = tasks[todolistsId].filter(t => t.id !== id);
-        console.log({[todolistsId]:filteredTasks});
-        debugger
-       // if(filteredTasks)
-           // setTasks({[todolistsId]:filteredTasks});
+        setTasks({...tasks, [todolistsId]: filteredTasks});
     }
 
-    function addTask(todolistsId:string, title: string) {
+    function addTask(todolistsId: string, title: string) {
         let newTask = {id: v1(), title: title, isDone: false};
-        let newTasks = {...tasks,[todolistsId]:tasks[todolistsId].concat(newTask)};
+        let newTasks = {...tasks, [todolistsId]: tasks[todolistsId].concat(newTask)};
         setTasks(newTasks);
     }
 
-    function changeStatus(todolistsId:string, taskId: string, isDone: boolean) {
+    function changeStatus(todolistsId: string, taskId: string, isDone: boolean) {
         let task = tasks[todolistsId].find(t => t.id === taskId);
         if (task) {
-        console.log(task)
+            console.log(task)
             task.isDone = isDone;
-        setTasks({...tasks,[todolistsId]:tasks[todolistsId]});
+            setTasks({...tasks, [todolistsId]: tasks[todolistsId]});
         }
-        // //
     }
 
-
-    let tasksForTodolist = tasks;
 
 
     function changeFilter(value: FilterValuesType, todolistsId: string) {
