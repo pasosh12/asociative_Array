@@ -1,19 +1,20 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
+import React, {StrictMode} from 'react';
+import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+import * as serviceWorker from './serviceWorker';
+import {createRoot} from 'react-dom/client';
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
+
+
+// This is the ID of the div in your index.html file
+
+const rootElement = document.getElementById('root');
+// const root = createRoot(rootElement);
+const root = createRoot(rootElement!);
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+    <StrictMode>
+        <App />
+    </StrictMode>,
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+serviceWorker.unregister();
